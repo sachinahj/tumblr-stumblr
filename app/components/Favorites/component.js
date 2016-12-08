@@ -23,7 +23,17 @@ class Favorites extends React.Component {
       }
 
       const posts = results.map((post) => {
+
         post._isFavorite = false;
+
+        const index = this.state.favorites.findIndex((favorite) => {
+          if (favorite.id == post.id) return true;
+        });
+
+        if (index != -1) {
+          post._isFavorite = true;
+        }
+
         return post;
       });
 
@@ -51,9 +61,7 @@ class Favorites extends React.Component {
 
   updatePostsWithFavorites(postId, isFavorite) {
     const posts = this.state.posts.map((searchPost) => {
-      if (searchPost.id == postId) {
-        searchPost._isFavorite = isFavorite;
-      }
+      if (searchPost.id == postId) searchPost._isFavorite = isFavorite;
       return searchPost;
     });
     return posts;
@@ -62,9 +70,7 @@ class Favorites extends React.Component {
   removePostFromFavorites(postId) {
     const favorites = this.state.favorites;
     const index = favorites.findIndex((favorite) => {
-      if (favorite.id == postId) {
-        return true;
-      }
+      if (favorite.id == postId) return true;
     });
 
     if (index != -1) {
