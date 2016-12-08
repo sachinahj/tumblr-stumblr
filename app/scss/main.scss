@@ -10,7 +10,7 @@ body {
   padding: 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
   margin: 0;
 }
 
@@ -18,9 +18,44 @@ div[class^="col-"], div[class*=" col-"] {
   padding: 0;
 }
 
-.col-margin-left {
+.margin-top {
+  margin-top: 1rem;
+}
+.margin-left {
   margin-left: 1rem;
 }
-.col-margin-right {
+.margin-bottom {
+  margin-bottom: 1rem;
+}
+.margin-right {
   margin-right: 1rem;
+}
+
+.margin-top-half {
+  margin-top: 0.5rem;
+}
+.margin-left-half {
+  margin-left: 0.5rem;
+}
+.margin-bottom-half {
+  margin-bottom: 0.5rem;
+}
+.margin-right-half {
+  margin-right: 0.5rem;
+}
+
+hr {
+  width: 100%;
+  margin: 0.5rem 0;
+}
+
+.post {
+  .title {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  p {
+    font-size: 0.7rem;
+  }
 }

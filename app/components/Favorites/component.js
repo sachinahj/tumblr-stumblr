@@ -87,7 +87,7 @@ class Favorites extends React.Component {
       onSearch: this.onSearch,
       postAction: this.postAction,
     };
-
+      
     return template(propsTemplate);
   }
 };
