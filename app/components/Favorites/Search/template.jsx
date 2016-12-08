@@ -11,7 +11,7 @@ const template = (props) => {
     <form>
       <div className="row">
         <div className="col-xs">
-          <TextField ref="blogIdentifier" floatingLabelText="Blog Name" fullWidth={true} defaultValue={"usatoday"} />
+          <TextField ref="blogIdentifier" floatingLabelText="Blog Name" fullWidth={true} />
         </div>
         <div className="col-xs">
           <TextField ref="tag" floatingLabelText="Tag" fullWidth={true} />
