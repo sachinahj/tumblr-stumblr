@@ -1,12 +1,20 @@
 import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+import BootstrapFlex from './scss/bootstrap-flex.scss';
+import Style from './scss/main.scss';
+
 import Favorites from './components/Favorites'
 
-import Styles from './scss/main.scss';
+injectTapEventPlugin();
 
 const App = () => (
-  <div className="container">
-    <Favorites />
-  </div>
+  <MuiThemeProvider>
+    <div className="container">
+        <Favorites />
+    </div>
+  </MuiThemeProvider>
 );
 
 export default App;

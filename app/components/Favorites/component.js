@@ -1,6 +1,8 @@
 import React from 'react';
 import {autobind} from 'core-decorators';
 
+import Tumblr from "../../services/tumblr";
+
 import template from './template.jsx';
 
 class Favorites extends React.Component {
@@ -9,9 +11,14 @@ class Favorites extends React.Component {
     super(props);
   }
 
+  @autobind
+  onSearch(searchRequest) {
+    Tumblr.getPosts(searchRequest);
+  }
+
   render() {
     const propsTemplate = {
-      testFn: this.testFn,
+      onSearch: this.onSearch,
     };
 
     return template(propsTemplate);

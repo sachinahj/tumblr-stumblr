@@ -1,3 +1,19 @@
 body {
   padding: 2rem 0;
 }
+
+.row {
+  margin: 0;
+}
+
+.container {
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+div[class^="col-"], div[class*=" col-"] {
+    padding: 0;
+}

@@ -48,22 +48,16 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loaders: [
-          'babel-loader',
-        ],
+        loaders: ['babel-loader'],
         exclude: /node_modules/
       },
       {
-        test: /\.css$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules',
-          'postcss-loader',
-        ],
+        test: /\.json$/,
+        loaders: ['json-loader'],
       },
       {
         test: /\.scss$/,
-        loaders: ["style-loader", "css-loader", "sass-loader"]
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       }
     ],
   },
