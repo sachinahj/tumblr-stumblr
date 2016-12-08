@@ -6,10 +6,12 @@ import template from './template.jsx';
 class Search extends React.Component {
 
   static propTypes = {
-    onSearch: React.PropTypes.func,
+    post: React.PropTypes.object,
+    postAction: React.PropTypes.func,
   };
   static defaultProps = {
-    onSearch: () => {},
+    post: {},
+    postAction: () => {},
   };
 
   constructor(props) {
@@ -17,20 +19,15 @@ class Search extends React.Component {
   }
 
   @autobind
-  onSubmit(e) {
+  onClick(e) {
     e.preventDefault();
-    const searchRequest = {
-      blogIdentifier: this.refs.blogIdentifier.input.value,
-      tag:  this.refs.tag.input.value,
-    };
-    if (searchRequest.blogIdentifier || searchRequest.tag) {
-      this.props.onSearch(searchRequest);
-    }
+    this.props.postAction(this.props.post)
   }
 
   render() {
     const propsTemplate = {
-      onSubmit: this.onSubmit,
+      post: this.props.post,
+      onClick: this.onClick,
     };
 
     return template(propsTemplate);

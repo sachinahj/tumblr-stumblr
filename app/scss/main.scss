@@ -15,5 +15,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 div[class^="col-"], div[class*=" col-"] {
-    padding: 0;
+  padding: 0;
+}
+
+.col-margin-left {
+  margin-left: 1rem;
+}
+.col-margin-right {
+  margin-right: 1rem;
 }
