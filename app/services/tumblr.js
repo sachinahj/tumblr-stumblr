@@ -16,7 +16,7 @@ const getPosts = (searchRequest, callback) => {
   url += `&callback=?`;
 
   FetchJSONP(url, {
-    timeout: 1000,
+    timeout: 2000,
   })
   .then(response => {
     return response.json()
