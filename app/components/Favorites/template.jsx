@@ -30,6 +30,9 @@ const template = (props) => {
           {posts.length ? <hr/> : null}
         </div>
         <div className="col-xs margin-left">
+          <div className="row flex-items-xs-center">
+            <h4>Favorites</h4>
+          </div>
           {
             favorites.map((favorite, index) => {
               return [

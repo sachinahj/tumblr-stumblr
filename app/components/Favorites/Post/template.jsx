@@ -1,5 +1,6 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 
 const template = (props) => {
   const {
@@ -7,9 +8,15 @@ const template = (props) => {
     onClick,
   } = props;
 
-  const label = post._isFavorite ? "Remove" : "Add";
+  let button = post._isFavorite ? "Remove" : "Add";
+  if (post._isFavorite) {
+    button = <FlatButton label="Remove" primary={true} onTouchTap={onClick} />
+  } else {
+    button = <RaisedButton label="Add" primary={true} onTouchTap={onClick} />
+  }
+
+
   let postHTML;
-  
   switch (post.type) {
     case 'text':
       postHTML = <div dangerouslySetInnerHTML={{__html: post.body}} />;
@@ -18,7 +25,7 @@ const template = (props) => {
       postHTML = <a href={post.url}>{post.excerpt}</a>;
       break;
     case 'answer':
-      postHTML = <div dangerouslySetInnerHTML={{__html: post.answer}} />;        
+      postHTML = <div dangerouslySetInnerHTML={{__html: post.answer}} />;
       break;
     case 'quote':
       postHTML = <p>{post.text}</p>;
@@ -39,16 +46,16 @@ const template = (props) => {
     case 'chat':
       postHTML = (
         <div className="col-xs">
-          {  
+          {
             post.dialogue.map((message, index) => {
-              return [  
+              return [
                 <div className="row">
                   <p>{message.phrase}</p>
                 </div>,
                 <div className="row">
-                  <p>-- {message.name}</p> 
+                  <p>-- {message.name}</p>
                 </div>
-              ]    
+              ]
             })
           }
         </div>
@@ -62,14 +69,14 @@ const template = (props) => {
   return (
     <div className="post row margin-top">
       <div className="col-xs">
-        <h6 className="row title margin-bottom-half">
+        <h6 className="row title">
           {post.summary}
         </h6>
-        <div className="row flex-items-xs-center">
+        <div className="row flex-items-xs-center margin-bottom-half margin-top-half">
           {postHTML}
         </div>
         <div className="row flex-items-xs-right">
-          <FlatButton label={label} primary={true} onTouchTap={onClick} />
+          {button}
         </div>
       </div>
     </div>
