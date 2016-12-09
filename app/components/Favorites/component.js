@@ -12,33 +12,47 @@ class Favorites extends React.Component {
     this.state = {
       posts: [],
       favorites: [],
+      feedback: null,
     };
   }
 
   @autobind
   onSearch(searchRequest) {
-    Tumblr.getPosts(searchRequest, (err, results) => {
-      let posts = [];
+    this.setState({
+      feedback: "Searching...",
+    },
+    () => {
+      Tumblr.getPosts(searchRequest, (err, results) => {
+        let posts = [];
+        let feedback = null;
 
-      if (!err && results && results.length) {
-        posts = results.map((post) => {
+        if (!err && results && results.length) {
 
-          post._isFavorite = false;
+          posts = results.map((post) => {
 
-          const index = this.state.favorites.findIndex((favorite) => {
-            if (favorite.id == post.id) return true;
+            post._isFavorite = false;
+
+            const index = this.state.favorites.findIndex((favorite) => {
+              if (favorite.id == post.id) return true;
+            });
+
+            if (index != -1) {
+              post._isFavorite = true;
+            }
+
+            return post;
           });
 
-          if (index != -1) {
-            post._isFavorite = true;
-          }
+        } else {
 
-          return post;
+          feedback = "No posts found for this search.";
+
+        }
+
+        this.setState({
+          posts: posts,
+          feedback: feedback,
         });
-      }
-
-      this.setState({
-        posts: posts,
       });
     });
   }
@@ -82,6 +96,7 @@ class Favorites extends React.Component {
 
   render() {
     const propsTemplate = {
+      feedback: this.state.feedback,
       posts: this.state.posts,
       favorites: this.state.favorites,
       onSearch: this.onSearch,

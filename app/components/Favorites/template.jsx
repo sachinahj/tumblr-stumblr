@@ -4,11 +4,28 @@ import Search from './Search';
 
 const template = (props) => {
   const {
+    feedback,
     posts,
     favorites,
     onSearch,
     postAction,
   } = props;
+
+  let results;
+  if (feedback) {
+
+    results = <h5>{feedback}</h5>;
+
+  } else {
+
+    results = posts.map((post, index) => {
+      return [
+        <hr/>,
+        <Post key={index} post={post} postAction={postAction} isFavorite={post._isFavorite} />,
+      ];
+    });
+
+  }
 
   return (
     <div>
@@ -19,14 +36,7 @@ const template = (props) => {
         <div className="col-xs margin-right">
           <Search onSearch={onSearch} />
           <br/>
-          {
-            posts.map((post, index) => {
-              return [
-                <hr/>,
-                <Post key={index} post={post} postAction={postAction} isFavorite={post._isFavorite} />,
-              ];
-            })
-          }
+          {results}
           {posts.length ? <hr/> : null}
         </div>
         <div className="col-xs margin-left">
