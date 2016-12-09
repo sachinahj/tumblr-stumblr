@@ -18,24 +18,24 @@ class Favorites extends React.Component {
   @autobind
   onSearch(searchRequest) {
     Tumblr.getPosts(searchRequest, (err, results) => {
-      if (err) {
-        throw err
-      }
+      let posts = [];
 
-      const posts = results.map((post) => {
+      if (!err && results && results.length) {
+        posts = results.map((post) => {
 
-        post._isFavorite = false;
+          post._isFavorite = false;
 
-        const index = this.state.favorites.findIndex((favorite) => {
-          if (favorite.id == post.id) return true;
+          const index = this.state.favorites.findIndex((favorite) => {
+            if (favorite.id == post.id) return true;
+          });
+
+          if (index != -1) {
+            post._isFavorite = true;
+          }
+
+          return post;
         });
-
-        if (index != -1) {
-          post._isFavorite = true;
-        }
-
-        return post;
-      });
+      }
 
       this.setState({
         posts: posts,
@@ -87,7 +87,7 @@ class Favorites extends React.Component {
       onSearch: this.onSearch,
       postAction: this.postAction,
     };
-      
+
     return template(propsTemplate);
   }
 };

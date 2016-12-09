@@ -15,17 +15,18 @@ const getPosts = (searchRequest, callback) => {
   }
   url += `&callback=?`;
 
-  FetchJSONP(url)
-    .then(response => {
-      return response.json()
-    })
-    .then(responseJson => {
-
-      callback(null, responseJson.response.posts ? responseJson.response.posts : responseJson.response);
-    })
-    .catch(error => {
-      callback(error, null);
-    });
+  FetchJSONP(url, {
+    timeout: 1000,
+  })
+  .then(response => {
+    return response.json()
+  })
+  .then(responseJson => {
+    callback(null, responseJson.response.posts ? responseJson.response.posts : responseJson.response);
+  })
+  .catch(err => {
+    callback(err, null);
+  });
 };
 
 const Tumblr = {
